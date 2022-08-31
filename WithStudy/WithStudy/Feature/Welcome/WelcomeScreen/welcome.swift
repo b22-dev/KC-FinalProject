@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct welcome: View {
     var body: some View {
         NavigationView{
         ZStack{
@@ -38,7 +38,7 @@ Spacer()
                         .padding(.top)
                     } // <- Login Button
                 
-                NavigationLink(destination:  Signup(name: "", gmail: "", pass: "", conPass: "")) {
+                NavigationLink(destination:  Signup()) {
                     Text("انشاء حساب")
                         .font(.system(size: 15))
                         .frame(width: 150, height: 50)
@@ -51,9 +51,9 @@ Spacer()
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct welcome_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        welcome()
             .preferredColorScheme(.dark)
             
     }

@@ -11,7 +11,7 @@ struct ForgetPass: View {
                 HStack{
                     Spacer()
                     VStack(alignment: .trailing){
-                    Text("لا تزعل!")
+                    Text("لا تحاتي!")
                         .font(.title)
                         .fontWeight(.bold)
                         .padding(.bottom, 5)

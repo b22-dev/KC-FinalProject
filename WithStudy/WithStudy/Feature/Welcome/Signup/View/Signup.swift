@@ -2,15 +2,18 @@
 import SwiftUI
 
 struct Signup: View {
-    @State var name : String
-    @State var gmail : String
-    @State var pass : String
-    @State var conPass : String
-    @State var grade = 0
+    @StateObject private var vm = RegistrationViewModelImpl(
+        service: RegistrationServiceImpl()
+    )
+    @State var password = ""
+    @State private var showingAlert = false
+    @State var isExpanded = false
+    @State var pass = false
     var body: some View {
         ZStack{
             Color("white").ignoresSafeArea()
             
+
             VStack{
                 ProgressView(value: 0.5)
                     .accentColor(Color("teal"))
@@ -33,7 +36,7 @@ Spacer()
                 VStack{
                     HStack{
     Spacer() // <- Gmail Text (Right)
-                        Text("الحساب")
+                        Text("البريد الالكتروني")
                             .font(.system(size: 20))
                             .fontWeight(.semibold)
                             .foregroundColor(Color("teal"))
@@ -48,7 +51,8 @@ Spacer()
                             .cornerRadius(10)
                             .shadow(color: Color("teal"), radius: 5, x: 0, y: 1)
 
-                        TextField("", text: $gmail)
+                        TextField("", text: $vm.newUser.email)
+                            .keyboardType(.emailAddress)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
                             .frame(width: .infinity, height: 50)
@@ -72,7 +76,7 @@ Spacer()
                             .cornerRadius(10)
                             .shadow(color: Color("teal"), radius: 5, x: 0, y: 1)
 
-                        SecureField("", text: $pass)
+                        SecureField("", text: $vm.newUser.password)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
                             .frame(width: .infinity, height: 50)
@@ -97,14 +101,15 @@ Spacer()
                             .cornerRadius(10)
                             .shadow(color: Color("teal"), radius: 5, x: 0, y: 1)
 
-                        SecureField("", text: $conPass)
+                        SecureField("", text: $password)
                             .foregroundColor(.black)
                             .multilineTextAlignment(.leading)
                             .frame(width: .infinity, height: 50)
                             .padding(.horizontal)
                             } // <- Gmail
-                    Spacer()
-                    NavigationLink(destination: SignUp2(name: name, grade: grade)) {
+     Spacer()
+
+                    NavigationLink(destination: pass == true ? SignUp2() : SignupError()) {
                         ZStack{
                             Color("teal")
                                 .frame(width: .infinity, height: 50)
@@ -115,18 +120,22 @@ Spacer()
                         }
                         .shadow(color: Color("teal"), radius: 10, x: 0, y: 2)
                     }
+
+                        
+
                     
-                } //<- InPut area
+                    
+                    } //<- InPut area
                 .padding(.horizontal, 30)
-Spacer()
-            } // Main VStack
+
+                } // Main VStack
         } // <- Background
     }
 }
 
 struct Signup_Previews: PreviewProvider {
     static var previews: some View {
-        Signup(name: "", gmail: "", pass: "", conPass: "")
+        Signup()
             .preferredColorScheme(.dark)
             
     }

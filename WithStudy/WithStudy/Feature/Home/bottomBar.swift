@@ -4,6 +4,7 @@ import SwiftUI
 struct bottomBar: View {
     @State var name = ""
     @State var grade = 0
+    @Binding var email: String
     var body: some View {
         TabView() {
         files()
@@ -43,7 +44,7 @@ struct bottomBar: View {
                 }
                 .tag(2)
             
-            profile(name1: $name, grade1: $grade)
+            profile(name1: $name, grade1: $grade, email: $email)
                     .tabItem {
                         VStack{
                             Image(systemName: "person.crop.circle")
@@ -61,7 +62,7 @@ struct bottomBar: View {
 
 struct bottomBar_Previews: PreviewProvider {
     static var previews: some View {
-        bottomBar()
+        bottomBar(email: .constant("admin@gmail.com"))
             .preferredColorScheme(.dark)
     }
 }
