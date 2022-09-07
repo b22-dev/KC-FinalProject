@@ -91,7 +91,7 @@ Spacer()
                 .padding(.horizontal, 50)
 
                 Button(action: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     vm.login()
                     }
                     self.isLoading = true

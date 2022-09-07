@@ -44,7 +44,7 @@ struct chat: View {
                 }
                 //.frame(width: 450)
             }
-            
+
             HStack(spacing: 15) {
                 
                 TextField("اكتب رسالتك...", text: $chatData.txt)
@@ -76,7 +76,6 @@ struct chat: View {
             chatData.onAppear()
             
         })
-
         .navigationBarHidden(true)
         } // <- Background
         .overlay(

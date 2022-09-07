@@ -22,9 +22,7 @@ struct WithStudyApp : App {
             NavigationView {
                 switch SessionService.state {
                 case .loggedIn:
-                    withAnimation {
                         SplashScreen()
-                    }
                         .environmentObject(SessionService)
                 case .loggedOut:
                     welcome()
